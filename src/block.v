@@ -6,4 +6,5 @@ module block(enable, comp, write, data_in, data_out);
 
 	output [0:15] data_out;
 
+	reg [0:15] data;
 endmodule
