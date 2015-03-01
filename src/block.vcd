@@ -1,0 +1,51 @@
+$date
+	Sun Mar  1 23:18:45 2015
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module block_t $end
+$var wire 16 ! data_out [0:15] $end
+$var reg 16 " data_in [0:15] $end
+$var reg 1 # enable $end
+$var reg 1 $ write $end
+$scope module blk $end
+$var wire 16 % data_in [0:15] $end
+$var wire 1 & enable $end
+$var wire 1 ' write $end
+$var reg 16 ( data [0:15] $end
+$var reg 16 ) data_out [0:15] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx )
+bx (
+0'
+0&
+bx %
+0$
+0#
+bx "
+bx !
+$end
+#50
+1#
+1&
+#100
+b111100001111 "
+b111100001111 %
+#150
+b111100001111 (
+1$
+1'
+#210
+b111100001111 )
+b111100001111 !
+0$
+0'
+#1210
