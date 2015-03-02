@@ -9,10 +9,10 @@ module block(enable, write, data_in, data_out);
 	reg [0:15] data;
 
 	always @ (enable, write) begin
-		if (enable)
+		if (enable) begin
 			if (write)
 				data = data_in;
-			else
-				data_out = data;
+			data_out = data;
+		end
 	end
 endmodule
