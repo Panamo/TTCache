@@ -5,15 +5,15 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Wed 04 Mar 2015 10:58:23 AM IRST
+ * [] Last Modified : Wed 04 Mar 2015 08:29:04 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
 module set (enable, word, comp,
 	write, tag_in, data_in, valid_in,
-	rst, hit, dirty, tag_out,
-	data_out, valid);
+	rst, hit, dirty_out, tag_out,
+	data_out, valid_out);
 	
 	/* set number of block in a set */
 	parameter N = 4;
@@ -28,12 +28,14 @@ module set (enable, word, comp,
 	input valid_in;
 
 	output reg hit;
-	output reg dirty;
+	output reg dirty_out;
 	output reg [0:4] tag_out;
 	output reg [0:15] data_out;
-	output reg valid;
+	output reg valid_out;
 
 	reg [0:4] tag;
+	reg valid = 1'b0;
+	reg dirty = 1'b0
 
 	reg [0:15] word_in [0:N];
 	reg word_en [0:N];
@@ -56,13 +58,36 @@ module set (enable, word, comp,
 					hit = 1'b1;
 					data_out = word_out[word];
 					word_en[word] = 1'b1;
+					valid_out = valid;
+					dirty_out = dirty;
+				end else begin
+					/* MISS */
+					hit = 1'b0;
+					valid_out = valid;
+					dirty_out = dirty;	
 				end
 			end
+			if (comp && write)  begin
+				if (tag == tag_in && valid) begin
+					/* HIT -- Valid */
+					dirty = 1'b1;
+					word_in[word] = data_in;
+					word_wr[word] = 1'b1;
+					word_en[word] = 1'b1;
+					dirty_out = 1'b0;
+					hiy = 1'b0;
+				end else begin
+					/* MISS -- Valid */
+					valid_out = valid;
+					dirty_out = dirty;	
+				end
 			if (!comp && write) begin
 				tag = tag_in;
+				valid = valid_in;
+				dirty = 1'b0;
 				word_in[word] = data_in;
-				word_wr[word] = 1;
-				word_en[word] = 1;
+				word_wr[word] = 1'b1;
+				word_en[word] = 1'b1;
 			end
 		end else begin
 			word_en[word] = 1'b0;
