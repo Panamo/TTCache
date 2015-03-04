@@ -1,5 +1,5 @@
 $date
-	Wed Mar  4 20:51:41 2015
+	Wed Mar  4 22:14:38 2015
 $end
 $version
 	Icarus Verilog
@@ -37,7 +37,7 @@ $var reg 5 9 tag_out [0:4] $end
 $var reg 1 : valid $end
 $var reg 1 ; valid_out $end
 $scope begin genblk1 $end
-$scope module ins $end
+$scope module blk_ins $end
 $var wire 16 < data_in [0:15] $end
 $var wire 1 = enable $end
 $var wire 1 > write $end
@@ -46,7 +46,7 @@ $var reg 16 @ data_out [0:15] $end
 $upscope $end
 $upscope $end
 $scope begin genblk01 $end
-$scope module ins $end
+$scope module blk_ins $end
 $var wire 16 A data_in [0:15] $end
 $var wire 1 B enable $end
 $var wire 1 C write $end
@@ -55,7 +55,7 @@ $var reg 16 E data_out [0:15] $end
 $upscope $end
 $upscope $end
 $scope begin genblk001 $end
-$scope module ins $end
+$scope module blk_ins $end
 $var wire 16 F data_in [0:15] $end
 $var wire 1 G enable $end
 $var wire 1 H write $end
@@ -64,7 +64,7 @@ $var reg 16 J data_out [0:15] $end
 $upscope $end
 $upscope $end
 $scope begin genblk0001 $end
-$scope module ins $end
+$scope module blk_ins $end
 $var wire 16 K data_in [0:15] $end
 $var wire 1 L enable $end
 $var wire 1 M write $end

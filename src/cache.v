@@ -5,20 +5,21 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Wed 04 Mar 2015 09:30:24 PM IRST
+ * [] Last Modified : Wed 04 Mar 2015 10:41:08 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
+`timescale 1 ns/100 ps
 module cache (enable, index, word, comp,
 	write, tag_in, data_in, valid_in,
 	rst, hit, dirty, tag_out,
 	data_out, valid);
 
-	parameter N = 10;
+	parameter N = 15;
 
 	input enable;
-	input [0:7] index;
+	input [0:3] index;
 	input [0:1] word;
 	input comp;
 	input write;
@@ -71,16 +72,32 @@ module cache (enable, index, word, comp,
 	genvar i;
 	for (i = 0; i < N; i = i + 1) begin
 		set set_ins(set_en[i], set_word[i], set_cmp[i], set_wr[i], set_tag_in[i],
-			set_in[i], set_valid_in[i], rst, set_hit[i], set_dirty_out[i],
+			set_in[i], set_valid_in[i], set_rst[i], set_hit[i], set_dirty_out[i],
 			set_tag_out[i], set_out[i], set_valid_out[i]);
 	end
 	endgenerate
 	
 	always @ (enable) begin
 		if (enable) begin
+			set_en[index] = 1'b1;
+
+			set_rst[index] = rst;
+			set_word[index] = word;
+			set_cmp[index] = comp;
+			set_wr[index] = write;
+			set_tag_in[index] = tag_in;
+			set_in[index] = data_in;
+			set_valid_in[index] = valid_in;
 			
+			hit = set_hit[index];
+			dirty = set_dirty_out[index];
+			tag_out = set_tag_out[index];
+			valid = set_valid_out[index];
+
+			#0.5
+			data_out = set_out[index];
 		end else begin
-		
+			set_en[index] = 1'b0;
 		end
 	end
 endmodule
