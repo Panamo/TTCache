@@ -1,3 +1,15 @@
+/*
+ * In The Name Of God
+ * ========================================
+ * [] File Name : set.v
+ *
+ * [] Creation Date : 04-03-2015
+ *
+ * [] Last Modified : Wed 04 Mar 2015 08:00:58 AM IRST
+ *
+ * [] Created By : Parham Alvani (parham.alvani@gmail.com)
+ * =======================================
+*/
 module set (enable, word, comp,
 	write, tag_in, data_in, valid_in,
 	rst, hit, dirty, tag_out,
@@ -17,4 +29,6 @@ module set (enable, word, comp,
 	output [0:15] data_out;
 	output valid;
 
+	always @ (enable)
+	
 endmodule
