@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Wed 04 Mar 2015 10:01:26 PM IRST
+ * [] Last Modified : Thu 05 Mar 2015 02:07:19 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -26,6 +26,7 @@ module cache_t;
 	wire hit;
 	wire dirty;
 	wire valid;
+	wire ack;
 
 	initial begin
 		$dumpfile("cache.vcd");
@@ -49,5 +50,5 @@ module cache_t;
 		$stop;
 	end
 
-	cache ch(enable, index, word, cmp, write, tag, data_in, 1'b0, 1'b0, hit, dirty, tag_out, data_out, valid);
+	cache ch(enable, index, word, cmp, write, tag, data_in, 1'b0, 1'b0, hit, dirty, tag_out, data_out, valid, ack);
 endmodule

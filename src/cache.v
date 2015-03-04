@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Wed 04 Mar 2015 10:41:08 PM IRST
+ * [] Last Modified : Thu 05 Mar 2015 02:06:53 AM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -14,7 +14,7 @@
 module cache (enable, index, word, comp,
 	write, tag_in, data_in, valid_in,
 	rst, hit, dirty, tag_out,
-	data_out, valid);
+	data_out, valid, ack);
 
 	parameter N = 15;
 
@@ -33,6 +33,7 @@ module cache (enable, index, word, comp,
 	output reg [0:4] tag_out;
 	output reg [0:15] data_out;
 	output reg valid;
+	output reg ack;
 
 	/*
 	 *                      +-------------------+
@@ -79,6 +80,7 @@ module cache (enable, index, word, comp,
 	
 	always @ (enable) begin
 		if (enable) begin
+			ack = 1'b0;
 			set_en[index] = 1'b1;
 
 			set_rst[index] = rst;
@@ -96,7 +98,11 @@ module cache (enable, index, word, comp,
 
 			#0.5
 			data_out = set_out[index];
+			
+			#0.25
+			ack = 1'b1;
 		end else begin
+			ack = 1'b0;
 			set_en[index] = 1'b0;
 		end
 	end
