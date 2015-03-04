@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Wed 04 Mar 2015 08:29:04 PM IRST
+ * [] Last Modified : Wed 04 Mar 2015 09:29:52 PM IRST
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -35,7 +35,7 @@ module set (enable, word, comp,
 
 	reg [0:4] tag;
 	reg valid = 1'b0;
-	reg dirty = 1'b0
+	reg dirty = 1'b0;
 
 	reg [0:15] word_in [0:N];
 	reg word_en [0:N];
@@ -45,7 +45,7 @@ module set (enable, word, comp,
 	generate
 	genvar i;
 	for (i = 0; i < N; i = i + 1) begin
-		block ins(word_en[i], word_wr[i], word_in[i], word_out[i]);
+		block blk_ins(word_en[i], word_wr[i], word_in[i], word_out[i]);
 
 	end
 	endgenerate
@@ -75,12 +75,20 @@ module set (enable, word, comp,
 					word_wr[word] = 1'b1;
 					word_en[word] = 1'b1;
 					dirty_out = 1'b0;
-					hiy = 1'b0;
+					hit = 1'b0;
 				end else begin
 					/* MISS -- Valid */
 					valid_out = valid;
 					dirty_out = dirty;	
 				end
+			end
+			if (!comp && !write) begin
+				dirty_out = dirty;
+				valid_out = valid;
+				tag_out = tag;
+				data_out = word_out[word];
+				word_en[word] = 1'b1;
+			end
 			if (!comp && write) begin
 				tag = tag_in;
 				valid = valid_in;
@@ -94,7 +102,5 @@ module set (enable, word, comp,
 			word_wr[word] = 1'b0;
 			hit = 1'b0;
 		end
-	end
-
-	
+	end	
 endmodule
