@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Wed 04 Mar 2015 08:00:43 AM IRST
+ * [] Last Modified : Mon 30 Mar 2015 02:32:40 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -18,6 +18,7 @@ module block_t;
 	reg write;
 
 	wire [0:15] data_out;
+	wire ack;
 
 	initial begin
 		$dumpfile("block.vcd");
@@ -30,5 +31,5 @@ module block_t;
 		#1 write = 0;
 		#10 $stop;
 	end
-	block blk(enable, write, data_in, data_out);
+	block blk(enable, write, data_in, data_out, ack);
 endmodule
