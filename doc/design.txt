@@ -13,3 +13,11 @@ Parham Alvani <parham.alvani@gmail.com>
 +---------+     +-----+     +---+     +-----+
 |cache_ctl| --> |cache| --> |set| --> |block|
 +---------+     +-----+     +---+     +-----+
+
+           |-------|
+ data_in ->|   b   |
+  enable ->|   l   |
+   write ->|   o   |
+data_out <-|   c   |
+     ack <-|   k   |
+           |-------|
