@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Mon 30 Mar 2015 10:12:08 AM IRDT
+ * [] Last Modified : Mon 30 Mar 2015 10:46:53 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -30,14 +30,14 @@ module set_t;
 	initial begin
 		$dumpfile("set.vcd");
 		$dumpvars(0, set_t);
-		enable = 0;
-		word = 2'b11;
-		data_in = 16'b0000_1111_0000_1111;
-		tag = 5'b11101;
+		enable <= 0;
+		word <= 2'b11;
+		data_in <= 16'b0000_1111_0000_1111;
+		tag <= 5'b11101;
 		#5
-		enable = 1;
-		write = 1;
-		cmp = 0;
+		write <= 1;
+		cmp <= 0;
+		enable <= 1;
 		#5
 		enable = 0;
 		#5
