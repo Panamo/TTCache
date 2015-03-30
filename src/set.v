@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Mon 30 Mar 2015 10:19:51 AM IRDT
+ * [] Last Modified : Mon 30 Mar 2015 10:45:54 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -53,7 +53,7 @@ module set (enable, word, comp,
 	endgenerate
 
 	always @ (enable) begin
-		ack = 1'b0;
+		ack <= 1'b0;
 		if (enable) begin
 			/* Compare Read */
 			if (comp && !write) begin
@@ -62,7 +62,7 @@ module set (enable, word, comp,
 					hit = 1'b1;
 					valid_out = valid;
 					dirty_out = dirty;
-					word_en[word] = 1'b1;
+					word_en[word] <= 1'b1;
 
 					/* waiting for block ack */
 					while (!word_ack[word]) begin
@@ -85,14 +85,14 @@ module set (enable, word, comp,
 					dirty = 1'b1;
 					dirty_out = 1'b0;
 					hit = 1'b0;
-					word_wr[word] = 1'b1;
-					word_en[word] = 1'b1;
+					word_en[word] <= 1'b1;
+					word_wr[word] <= 1'b1;
+					word_in[word] <= data_in;
 
 					/* waiting for block ack */
 					while (!word_ack[word]) begin
 					end
 					
-					word_in[word] = data_in;
 					ack = 1'b1;
 				end else begin
 					/* MISS -- Valid */
@@ -106,7 +106,7 @@ module set (enable, word, comp,
 				dirty_out = dirty;
 				valid_out = valid;
 				tag_out = tag;
-				word_en[word] = 1'b1;
+				word_en[word] <= 1'b1;
 
 				/* waiting for block ack */
 				while (!word_ack[word]) begin
@@ -120,20 +120,20 @@ module set (enable, word, comp,
 				tag = tag_in;
 				valid = valid_in;
 				dirty = 1'b0;
-				word_wr[word] = 1'b1;
-				word_en[word] = 1'b1;
+				word_wr[word] <= 1'b1;
+				word_en[word] <= 1'b1;
+				word_in[word] <= data_in;
 
 				/* waiting for block ack */
 				while (!word_ack[word]) begin
 				end
 				
-				word_in[word] = data_in;
 				ack = 1'b1;
 			end
 		end else begin
-			word_en[word] = 1'b0;
-			word_wr[word] = 1'b0;
-			hit = 1'b0;
+			word_en[word] <= 1'b0;
+			word_wr[word] <= 1'b0;
+			hit <= 1'b0;
 		end
 	end	
 endmodule
