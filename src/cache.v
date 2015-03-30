@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Mon, Mar 30, 2015 12:50:06 PM
+ * [] Last Modified : Mon 30 Mar 2015 06:37:15 PM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -34,25 +34,6 @@ module cache (enable, index, word, comp,
 	output reg [0:15] data_out;
 	output reg valid;
 	output reg ack;
-
-	/*
-	 *                      +-------------------+
-         *                      |                   |
-         *        enable >------|                   |
-         *    index[7:0] >------|    cache          |
-         *     word[1:0] >------|                   |
-         *          comp >------|    256 lines      |-----> hit
-         *         write >------|    by 4 words     |-----> dirty
-         *   tag_in[4:0] >------|                   |-----> tag_out[4:0]
-         * data_in[15:0] >------|                   |-----> data_out[15:0]
-         *      valid_in >------|                   |-----> valid
-         *                      |                   |
-         *           clk >------|                   |
-         *           rst >------|                   |
-         *    createdump >------|                   |
-         *                      +-------------------+
-	*/
-	
 		
 	reg set_en [0:N];
 	reg set_rst [0:N];
@@ -82,7 +63,6 @@ module cache (enable, index, word, comp,
 	always @ (enable) begin
 		ack = 1'b0;
 		if (enable) begin
-			set_en[index] = 1'b1;
 			set_rst[index] = rst;
 			set_word[index] = word;
 			set_cmp[index] = comp;
@@ -90,6 +70,7 @@ module cache (enable, index, word, comp,
 			set_tag_in[index] = tag_in;
 			set_in[index] = data_in;
 			set_valid_in[index] = valid_in;
+			set_en[index] = 1'b1;
 			
 			wait (set_ack[index]) begin
 				hit = set_hit[index];
