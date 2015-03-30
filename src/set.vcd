@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $date
 	Mon Mar 30 10:28:14 2015
 $end
@@ -16,3 +17,145 @@ $upscope $end
 $scope begin genblk1[1] $end
 $upscope $end
 $scope begin genblk1[0] $end
+=======
+$date
+	Mon Mar 30 10:46:56 2015
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module set_t $end
+$var wire 1 ! ack $end
+$var wire 16 " data_out [0:15] $end
+$var wire 1 # dirty $end
+$var wire 1 $ hit $end
+$var wire 5 % tag_out [0:4] $end
+$var wire 1 & valid $end
+$var reg 1 ' cmp $end
+$var reg 16 ( data_in [0:15] $end
+$var reg 1 ) enable $end
+$var reg 5 * tag [0:4] $end
+$var reg 2 + word [0:1] $end
+$var reg 1 , write $end
+$scope module st $end
+$var wire 1 - comp $end
+$var wire 16 . data_in [0:15] $end
+$var wire 1 / enable $end
+$var wire 1 0 rst $end
+$var wire 5 1 tag_in [0:4] $end
+$var wire 1 2 valid_in $end
+$var wire 2 3 word [0:1] $end
+$var wire 1 4 write $end
+$var reg 1 5 ack $end
+$var reg 16 6 data_out [0:15] $end
+$var reg 1 7 dirty $end
+$var reg 1 8 dirty_out $end
+$var reg 1 9 hit $end
+$var reg 5 : tag [0:4] $end
+$var reg 5 ; tag_out [0:4] $end
+$var reg 1 < valid $end
+$var reg 1 = valid_out $end
+$scope begin genblk1 $end
+$scope module blk_ins $end
+$var wire 16 > data_in [0:15] $end
+$var wire 1 ? enable $end
+$var wire 1 @ write $end
+$var reg 1 A ack $end
+$var reg 16 B data [0:15] $end
+$var reg 16 C data_out [0:15] $end
+$upscope $end
+$upscope $end
+$scope begin genblk01 $end
+$scope module blk_ins $end
+$var wire 16 D data_in [0:15] $end
+$var wire 1 E enable $end
+$var wire 1 F write $end
+$var reg 1 G ack $end
+$var reg 16 H data [0:15] $end
+$var reg 16 I data_out [0:15] $end
+$upscope $end
+$upscope $end
+$scope begin genblk001 $end
+$scope module blk_ins $end
+$var wire 16 J data_in [0:15] $end
+$var wire 1 K enable $end
+$var wire 1 L write $end
+$var reg 1 M ack $end
+$var reg 16 N data [0:15] $end
+$var reg 16 O data_out [0:15] $end
+$upscope $end
+$upscope $end
+$scope begin genblk0001 $end
+$scope module blk_ins $end
+$var wire 16 P data_in [0:15] $end
+$var wire 1 Q enable $end
+$var wire 1 R write $end
+$var reg 1 S ack $end
+$var reg 16 T data [0:15] $end
+$var reg 16 U data_out [0:15] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx U
+bx T
+0S
+0R
+0Q
+bz P
+bx O
+bx N
+xM
+zL
+zK
+bz J
+bx I
+bx H
+xG
+zF
+zE
+bz D
+bx C
+bx B
+xA
+z@
+z?
+bz >
+x=
+0<
+bx ;
+bx :
+09
+x8
+07
+bx 6
+05
+x4
+b11 3
+02
+b11101 1
+00
+0/
+b111100001111 .
+x-
+x,
+b11 +
+b11101 *
+0)
+b111100001111 (
+x'
+x&
+bx %
+0$
+x#
+bx "
+0!
+$end
+#50
+>>>>>>> 56ee029b338685cd6d18b71f9ac8fb2a6fe3ba90
