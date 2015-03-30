@@ -12,7 +12,7 @@
 */
 
 `timescale 1 ns/100 ps
-module cache (enable, clk, index, word, comp,
+module cache_ctl (enable, clk, index, word, comp,
 	write, tag_in, data_in, valid_in,
 	rst, hit, dirty, tag_out,
 	data_out, valid);

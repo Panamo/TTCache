@@ -12,7 +12,7 @@
 */
 `timescale 1 ns/100 ps
 
-module cache_t;
+module cache_ctl_t;
 	reg [0:15] data_in;
 	reg [0:4] tag;
 	reg enable;
