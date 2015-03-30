@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Wed 04 Mar 2015 10:53:23 AM IRST
+ * [] Last Modified : Mon 30 Mar 2015 10:12:08 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -25,6 +25,7 @@ module set_t;
 	wire hit;
 	wire dirty;
 	wire valid;
+	wire ack;
 
 	initial begin
 		$dumpfile("set.vcd");
@@ -47,5 +48,5 @@ module set_t;
 		$stop;
 	end
 
-	set st(enable, word, cmp, write, tag, data_in, 1'b0, 1'b0, hit, dirty, tag_out, data_out, valid);
+	set st(enable, word, cmp, write, tag, data_in, 1'b0, 1'b0, hit, dirty, tag_out, data_out, valid, ack);
 endmodule
