@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Mon, Mar 30, 2015 11:05:57 AM
+ * [] Last Modified : Mon, Mar 30, 2015 12:50:59 PM
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -65,7 +65,7 @@ module set (enable, word, comp,
 					word_en[word] = 1'b1;
 
 					/* waiting for block ack */
-					wait (!word_ack[word]) begin
+					wait (word_ack[word]) begin
 						data_out = word_out[word];
 					end
 
@@ -90,7 +90,7 @@ module set (enable, word, comp,
 					word_in[word] = data_in;
 
 					/* waiting for block ack */
-					wait (!word_ack[word]) begin
+					wait (word_ack[word]) begin
 					end
 					
 					ack = 1'b1;
@@ -109,7 +109,7 @@ module set (enable, word, comp,
 				word_en[word] = 1'b1;
 
 				/* waiting for block ack */
-				wait (!word_ack[word]) begin
+				wait (word_ack[word]) begin
 					data_out = word_out[word];
 				end
 
@@ -125,7 +125,7 @@ module set (enable, word, comp,
 				word_in[word] <= data_in;
 
 				/* waiting for block ack */
-				wait (!word_ack[word]) begin
+				wait (word_ack[word]) begin
 				end
 				
 				ack = 1'b1;
