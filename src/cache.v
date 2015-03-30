@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Thu 05 Mar 2015 02:06:53 AM IRST
+ * [] Last Modified : Mon 30 Mar 2015 12:25:36 PM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -68,21 +68,21 @@ module cache (enable, index, word, comp,
 	wire [0:4] set_tag_out [0:N];
 	wire [0:15] set_out [0:N];
 	wire set_valid_out [0:N];
+	wire set_ack [0:N];
 
 	generate
 	genvar i;
 	for (i = 0; i < N; i = i + 1) begin
 		set set_ins(set_en[i], set_word[i], set_cmp[i], set_wr[i], set_tag_in[i],
 			set_in[i], set_valid_in[i], set_rst[i], set_hit[i], set_dirty_out[i],
-			set_tag_out[i], set_out[i], set_valid_out[i]);
+			set_tag_out[i], set_out[i], set_valid_out[i], set_ack[i]);
 	end
 	endgenerate
 	
 	always @ (enable) begin
+		ack = 1'b0;
 		if (enable) begin
-			ack = 1'b0;
 			set_en[index] = 1'b1;
-
 			set_rst[index] = rst;
 			set_word[index] = word;
 			set_cmp[index] = comp;
@@ -91,18 +91,16 @@ module cache (enable, index, word, comp,
 			set_in[index] = data_in;
 			set_valid_in[index] = valid_in;
 			
-			hit = set_hit[index];
-			dirty = set_dirty_out[index];
-			tag_out = set_tag_out[index];
-			valid = set_valid_out[index];
-
-			#0.5
-			data_out = set_out[index];
+			wait (set_ack[index]) begin
+				hit = set_hit[index];
+				dirty = set_dirty_out[index];
+				tag_out = set_tag_out[index];
+				valid = set_valid_out[index];
+				data_out = set_out[index];
+			end
 			
-			#0.25
 			ack = 1'b1;
 		end else begin
-			ack = 1'b0;
 			set_en[index] = 1'b0;
 		end
 	end
