@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 31-03-2015
  *
- * [] Last Modified : Tue 31 Mar 2015 12:54:49 PM IRDT
+ * [] Last Modified : Tue 31 Mar 2015 02:07:18 PM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -34,6 +34,8 @@ module way (enable, word, comp,
 	output reg valid_out;
 	output reg ack;
 
+	reg counter;
+
 	reg set_en [0:N];
 	reg [0:1] set_word [0:N];
 	reg set_cmp [0:N];
@@ -60,3 +62,95 @@ module way (enable, word, comp,
 	endgenerate
 
 	always @ (enable) begin
+		ack = 1'b0;
+		if (enable) begin
+			/* Reset */
+			if (rst) begin
+				valid = 1'b0;
+				ack = 1'b1;
+			end
+			/* Compare Read */
+			if (comp && !write) begin
+				for (counter = 0; counter < N; counter = counter + 1) begin
+					set_tag_in[counter] = tag_in;
+					set_wr[counter] = write;
+					set_cmp[counter] = comp;
+					set_word [counter] = word;
+					set_en[counter] = 1'b1;
+					
+					/* waiting for set ack */
+					wait (set_ack[counter]) begin
+						if (set_hit[counter]) begin
+							/* ONE HIT */
+							hit = 1'b1;
+							valid_out = set_valid_out[counter];
+							dirty_out = set_dirty_out[counter];
+							data_out = set_data_out[counter];
+							set_en[counter] = 1'b0;
+						end else begin
+							set_en[counter] = 1'b0;
+						end
+					end
+				end
+				if (!hit) begin
+					/* ALL MISS */
+					hit = 1'b0;
+				end
+				ack = 1'b1;
+			end
+			/* Compare Write */
+			if (comp && write) begin
+				for (counter = 0; counter < N; counter = counter + 1) begin
+					set_en[counter] = 1'b1;
+					set_tag_in[counter] = tag_in;
+					set_in[counter] = data_in;
+	
+					/* waiting for set ack */
+					wait (set_ack[counter]) begin
+						if (set_hit[counter]) begin
+							/* HIT -- Valid */
+							hit = 1'b1;
+							set_en[counter] = 1'b0;
+						end else begin
+							set_en[counter] = 1'b0;
+						end
+					end
+				end
+				if (!hit) begin
+					/* MISS -- Valid */
+					hit = 1'b0;
+				end
+				ack = 1'b1;
+			end
+			/* Access Read */
+			if (!comp && !write) begin
+				dirty_out = dirty;
+				valid_out = valid;
+				tag_out = tag;
+				word_en[word] = 1'b1;
+				/* waiting for block ack */
+				wait (word_ack[word]) begin
+					data_out = word_out[word];
+				end
+				ack = 1'b1;
+			end
+			/* Access Write */
+			if (!comp && write) begin
+				tag = tag_in;
+				valid = valid_in;
+				dirty = 1'b0;
+				word_wr[word] = 1'b1;
+				word_en[word] = 1'b1;
+				word_in[word] = data_in;
+				/* waiting for block ack */
+				wait (word_ack[word]) begin
+				end
+				ack = 1'b1;
+			end
+		end else begin
+			word_en[word] = 1'b0;
+			word_wr[word] = 1'b0;
+			hit = 1'b0;
+		end
+	end
+endmodule
