@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 31-03-2015
  *
- * [] Last Modified : Tue 31 Mar 2015 12:02:42 PM IRDT
+ * [] Last Modified : Tue 31 Mar 2015 05:26:46 PM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -21,7 +21,7 @@ module fibonacci_lfsr (enable, rst, data);
 
 	input enable;
     	input rst;
-	output reg [BITS - 1:0] data;
+	output reg [BITS - 1:0] datai = 5'h1f;
 
 	reg [BITS - 1:0] data_next;
 
