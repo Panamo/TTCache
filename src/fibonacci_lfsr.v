@@ -5,10 +5,16 @@
  *
  * [] Creation Date : 31-03-2015
  *
- * [] Last Modified : Tue 31 Mar 2015 11:42:57 AM IRDT
+ * [] Last Modified : Tue 31 Mar 2015 11:44:48 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
+*/
+
+/*
+ * based on:
+ * http://stackoverflow.com/questions/
+ * 14497877/how-to-implement-a-pseudo-hardware-random-number-generator
 */
 module fibonacci_lfsr (enable, rst_n, data);
 	input clk;
