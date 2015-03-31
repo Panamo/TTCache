@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Tue 31 Mar 2015 08:48:51 AM IRDT
+ * [] Last Modified : Tue 31 Mar 2015 01:27:59 PM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -89,7 +89,7 @@ module set (enable, word, comp,
 					/* HIT -- Valid */
 					dirty = 1'b1;
 					dirty_out = 1'b0;
-					hit = 1'b0;
+					hit = 1'b1;
 					word_en[word] = 1'b1;
 					word_wr[word] = 1'b1;
 					word_in[word] = data_in;
