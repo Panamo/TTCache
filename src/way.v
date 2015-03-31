@@ -5,11 +5,13 @@
  *
  * [] Creation Date : 31-03-2015
  *
- * [] Last Modified : Tue 31 Mar 2015 05:31:06 PM IRDT
+ * [] Last Modified : Tue, Mar 31, 2015  6:18:46 PM
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
+`timescale 1 ns/100 ps
+
 module way (enable, word, comp,
 	write, rst, tag_in, data_in, valid_in,
 	hit, dirty_out, tag_out,
@@ -35,6 +37,7 @@ module way (enable, word, comp,
 	output reg ack;
 
 	reg [0:N - 1] counter;
+	reg flag;
 
 	reg set_en [0:N];
 	reg [0:1] set_word [0:N];
@@ -55,7 +58,7 @@ module way (enable, word, comp,
 	generate
 	genvar i;
 	for (i = 0; i < N; i = i + 1) begin
-		set set_ins (set_en[i], set_word[i], set_cmp[i], set_wr[i], set_rst[i],
+		set set_ins (set_en[i], set_word[i], set_cmp[i], set_wr[i], 1'b0,
 			set_tag_in[i], set_in[i], set_valid_in[i], set_hit[i], set_dirty_out[i],
 			set_tag_out[i], set_out[i], set_valid_out[i], set_ack[i]);
 	end
@@ -65,16 +68,12 @@ module way (enable, word, comp,
 	reg rand_rst = 1'b0;
 	wire [4:0] rand;
 
-	fibonacci_lfsr rand (rand_en, rand_rst, rand);
+	fibonacci_lfsr rnd (rand_en, rand_rst, rand);
 
 	always @ (enable) begin
 		ack = 1'b0;
 		if (enable) begin
 			/* Reset */
-			if (rst) begin
-				valid = 1'b0;
-				ack = 1'b1;
-			end
 			/* Compare Read */
 			if (comp && !write) begin
 				for (counter = 0; counter < N; counter = counter + 1) begin
@@ -91,7 +90,7 @@ module way (enable, word, comp,
 							hit = 1'b1;
 							valid_out = set_valid_out[counter];
 							dirty_out = set_dirty_out[counter];
-							data_out = set_data_out[counter];
+							data_out = set_out[counter];
 							set_en[counter] = 1'b0;
 						end else begin
 							set_en[counter] = 1'b0;
@@ -134,20 +133,27 @@ module way (enable, word, comp,
 			end
 			/* Access Write */
 			if (!comp && write) begin
-				integer flag = 0;
+				flag = 0;
 				for (counter = 0; counter < N; counter = counter + 1) begin
+					set_in[counter] = data_in;
 					set_cmp[counter] = 1'b0;
 					set_wr[counter] = 1'b0;
 					set_en[counter] = 1'b1;
 
 					/* waiting for set ack */
 					wait (set_ack[counter]) begin
-						if (!set_valid[counter] && !found) begin
+						if (!set_valid_out[counter] && !flag) begin
+							#1
 							flag = 1;
 							set_en[counter] = 1'b0;
 							wait (!set_ack[counter]) begin
 							end
-							set_data_in[counter] = data_in;
+							/*
+							 * just for better
+							 * wave formats
+							*/
+							#1
+							set_word[counter] = word;
 							set_valid_in[counter] = valid_in;
 							set_tag_in[counter] = tag_in;
 							set_wr[counter] = 1'b1;
@@ -160,10 +166,11 @@ module way (enable, word, comp,
 					end
 
 				end
-				if (!found) begin
+				if (!flag) begin
 					rand_en = 1'b1;
 					
-					set_data_in[rand[4]] = data_in;
+					set_in[rand[4]] = data_in;
+					set_word[rand[4]] = word;
 					set_valid_in[rand[4]] = valid_in;
 					set_tag_in[rand[4]] = tag_in;
 					set_wr[rand[4]] = 1'b1;

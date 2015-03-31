@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Tue 31 Mar 2015 01:27:59 PM IRDT
+ * [] Last Modified : Tue, Mar 31, 2015  6:09:01 PM
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -111,12 +111,6 @@ module set (enable, word, comp,
 				dirty_out = dirty;
 				valid_out = valid;
 				tag_out = tag;
-				word_en[word] = 1'b1;
-
-				/* waiting for block ack */
-				wait (word_ack[word]) begin
-					data_out = word_out[word];
-				end
 
 				ack = 1'b1;
 			end
@@ -125,9 +119,9 @@ module set (enable, word, comp,
 				tag = tag_in;
 				valid = valid_in;
 				dirty = 1'b0;
+				word_in[word] = data_in;
 				word_wr[word] = 1'b1;
 				word_en[word] = 1'b1;
-				word_in[word] = data_in;
 
 				/* waiting for block ack */
 				wait (word_ack[word]) begin

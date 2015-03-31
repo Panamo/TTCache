@@ -1,0 +1,510 @@
+$date
+	Tue Mar 31 18:19:26 2015
+$end
+$version
+	ModelSim Version 10.1c
+$end
+$timescale
+	100ps
+$end
+$scope module way_t $end
+$var reg 16 ! data_in [0:15] $end
+$var reg 5 " tag [0:4] $end
+$var reg 1 # enable $end
+$var reg 1 $ write $end
+$var reg 2 % word [0:1] $end
+$var reg 1 & cmp $end
+$var reg 1 ' valid_in $end
+$var reg 1 ( rst $end
+$var wire 1 ) data_out [0] $end
+$var wire 1 * data_out [1] $end
+$var wire 1 + data_out [2] $end
+$var wire 1 , data_out [3] $end
+$var wire 1 - data_out [4] $end
+$var wire 1 . data_out [5] $end
+$var wire 1 / data_out [6] $end
+$var wire 1 0 data_out [7] $end
+$var wire 1 1 data_out [8] $end
+$var wire 1 2 data_out [9] $end
+$var wire 1 3 data_out [10] $end
+$var wire 1 4 data_out [11] $end
+$var wire 1 5 data_out [12] $end
+$var wire 1 6 data_out [13] $end
+$var wire 1 7 data_out [14] $end
+$var wire 1 8 data_out [15] $end
+$var wire 1 9 tag_out [0] $end
+$var wire 1 : tag_out [1] $end
+$var wire 1 ; tag_out [2] $end
+$var wire 1 < tag_out [3] $end
+$var wire 1 = tag_out [4] $end
+$var wire 1 > hit $end
+$var wire 1 ? dirty $end
+$var wire 1 @ valid $end
+$var wire 1 A ack $end
+$scope module wy $end
+$var parameter 32 B N $end
+$var wire 1 C enable $end
+$var wire 1 D rst $end
+$var wire 1 E word [0] $end
+$var wire 1 F word [1] $end
+$var wire 1 G comp $end
+$var wire 1 H write $end
+$var wire 1 I tag_in [0] $end
+$var wire 1 J tag_in [1] $end
+$var wire 1 K tag_in [2] $end
+$var wire 1 L tag_in [3] $end
+$var wire 1 M tag_in [4] $end
+$var wire 1 N data_in [0] $end
+$var wire 1 O data_in [1] $end
+$var wire 1 P data_in [2] $end
+$var wire 1 Q data_in [3] $end
+$var wire 1 R data_in [4] $end
+$var wire 1 S data_in [5] $end
+$var wire 1 T data_in [6] $end
+$var wire 1 U data_in [7] $end
+$var wire 1 V data_in [8] $end
+$var wire 1 W data_in [9] $end
+$var wire 1 X data_in [10] $end
+$var wire 1 Y data_in [11] $end
+$var wire 1 Z data_in [12] $end
+$var wire 1 [ data_in [13] $end
+$var wire 1 \ data_in [14] $end
+$var wire 1 ] data_in [15] $end
+$var wire 1 ^ valid_in $end
+$var reg 1 _ hit $end
+$var reg 1 ` dirty_out $end
+$var reg 5 a tag_out [0:4] $end
+$var reg 16 b data_out [0:15] $end
+$var reg 1 c valid_out $end
+$var reg 1 d ack $end
+$var reg 2 e counter [0:1] $end
+$var reg 1 f flag $end
+$var wire 1 g set_hit $end
+$var wire 1 h set_dirty_out $end
+$var wire 1 i set_tag_out $end
+$var wire 1 j set_out $end
+$var wire 1 k set_valid_out $end
+$var wire 1 l set_ack $end
+$var reg 1 m rand_en $end
+$var reg 1 n rand_rst $end
+$var wire 1 o rand [4] $end
+$var wire 1 p rand [3] $end
+$var wire 1 q rand [2] $end
+$var wire 1 r rand [1] $end
+$var wire 1 s rand [0] $end
+$scope begin genblk1[1] $end
+$var parameter 32 t i $end
+$scope module set_ins $end
+$var parameter 32 u N $end
+$var wire 1 v enable $end
+$var wire 1 w rst $end
+$var wire 1 x word [0] $end
+$var wire 1 y word [1] $end
+$var wire 1 z comp $end
+$var wire 1 { write $end
+$var wire 1 | tag_in [0] $end
+$var wire 1 } tag_in [1] $end
+$var wire 1 ~ tag_in [2] $end
+$var wire 1 !! tag_in [3] $end
+$var wire 1 "! tag_in [4] $end
+$var wire 1 #! data_in [0] $end
+$var wire 1 $! data_in [1] $end
+$var wire 1 %! data_in [2] $end
+$var wire 1 &! data_in [3] $end
+$var wire 1 '! data_in [4] $end
+$var wire 1 (! data_in [5] $end
+$var wire 1 )! data_in [6] $end
+$var wire 1 *! data_in [7] $end
+$var wire 1 +! data_in [8] $end
+$var wire 1 ,! data_in [9] $end
+$var wire 1 -! data_in [10] $end
+$var wire 1 .! data_in [11] $end
+$var wire 1 /! data_in [12] $end
+$var wire 1 0! data_in [13] $end
+$var wire 1 1! data_in [14] $end
+$var wire 1 2! data_in [15] $end
+$var wire 1 3! valid_in $end
+$var reg 1 4! hit $end
+$var reg 1 5! dirty_out $end
+$var reg 5 6! tag_out [0:4] $end
+$var reg 16 7! data_out [0:15] $end
+$var reg 1 8! valid_out $end
+$var reg 1 9! ack $end
+$var reg 5 :! tag [0:4] $end
+$var reg 1 ;! valid $end
+$var reg 1 <! dirty $end
+$var wire 1 =! word_out $end
+$var wire 1 >! word_ack $end
+$scope begin genblk1[3] $end
+$var parameter 32 ?! i $end
+$scope module blk_ins $end
+$var wire 1 @! enable $end
+$var wire 1 A! write $end
+$var wire 1 B! rst $end
+$var wire 1 C! data_in [0] $end
+$var wire 1 D! data_in [1] $end
+$var wire 1 E! data_in [2] $end
+$var wire 1 F! data_in [3] $end
+$var wire 1 G! data_in [4] $end
+$var wire 1 H! data_in [5] $end
+$var wire 1 I! data_in [6] $end
+$var wire 1 J! data_in [7] $end
+$var wire 1 K! data_in [8] $end
+$var wire 1 L! data_in [9] $end
+$var wire 1 M! data_in [10] $end
+$var wire 1 N! data_in [11] $end
+$var wire 1 O! data_in [12] $end
+$var wire 1 P! data_in [13] $end
+$var wire 1 Q! data_in [14] $end
+$var wire 1 R! data_in [15] $end
+$var reg 16 S! data_out [0:15] $end
+$var reg 1 T! ack $end
+$var reg 16 U! data [0:15] $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[2] $end
+$var parameter 32 V! i $end
+$scope module blk_ins $end
+$var wire 1 W! enable $end
+$var wire 1 X! write $end
+$var wire 1 Y! rst $end
+$var wire 1 Z! data_in [0] $end
+$var wire 1 [! data_in [1] $end
+$var wire 1 \! data_in [2] $end
+$var wire 1 ]! data_in [3] $end
+$var wire 1 ^! data_in [4] $end
+$var wire 1 _! data_in [5] $end
+$var wire 1 `! data_in [6] $end
+$var wire 1 a! data_in [7] $end
+$var wire 1 b! data_in [8] $end
+$var wire 1 c! data_in [9] $end
+$var wire 1 d! data_in [10] $end
+$var wire 1 e! data_in [11] $end
+$var wire 1 f! data_in [12] $end
+$var wire 1 g! data_in [13] $end
+$var wire 1 h! data_in [14] $end
+$var wire 1 i! data_in [15] $end
+$var reg 16 j! data_out [0:15] $end
+$var reg 1 k! ack $end
+$var reg 16 l! data [0:15] $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[1] $end
+$var parameter 32 m! i $end
+$scope module blk_ins $end
+$var wire 1 n! enable $end
+$var wire 1 o! write $end
+$var wire 1 p! rst $end
+$var wire 1 q! data_in [0] $end
+$var wire 1 r! data_in [1] $end
+$var wire 1 s! data_in [2] $end
+$var wire 1 t! data_in [3] $end
+$var wire 1 u! data_in [4] $end
+$var wire 1 v! data_in [5] $end
+$var wire 1 w! data_in [6] $end
+$var wire 1 x! data_in [7] $end
+$var wire 1 y! data_in [8] $end
+$var wire 1 z! data_in [9] $end
+$var wire 1 {! data_in [10] $end
+$var wire 1 |! data_in [11] $end
+$var wire 1 }! data_in [12] $end
+$var wire 1 ~! data_in [13] $end
+$var wire 1 !" data_in [14] $end
+$var wire 1 "" data_in [15] $end
+$var reg 16 #" data_out [0:15] $end
+$var reg 1 $" ack $end
+$var reg 16 %" data [0:15] $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[0] $end
+$var parameter 32 &" i $end
+$scope module blk_ins $end
+$var wire 1 '" enable $end
+$var wire 1 (" write $end
+$var wire 1 )" rst $end
+$var wire 1 *" data_in [0] $end
+$var wire 1 +" data_in [1] $end
+$var wire 1 ," data_in [2] $end
+$var wire 1 -" data_in [3] $end
+$var wire 1 ." data_in [4] $end
+$var wire 1 /" data_in [5] $end
+$var wire 1 0" data_in [6] $end
+$var wire 1 1" data_in [7] $end
+$var wire 1 2" data_in [8] $end
+$var wire 1 3" data_in [9] $end
+$var wire 1 4" data_in [10] $end
+$var wire 1 5" data_in [11] $end
+$var wire 1 6" data_in [12] $end
+$var wire 1 7" data_in [13] $end
+$var wire 1 8" data_in [14] $end
+$var wire 1 9" data_in [15] $end
+$var reg 16 :" data_out [0:15] $end
+$var reg 1 ;" ack $end
+$var reg 16 <" data [0:15] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[0] $end
+$var parameter 32 =" i $end
+$scope module set_ins $end
+$var parameter 32 >" N $end
+$var wire 1 ?" enable $end
+$var wire 1 @" rst $end
+$var wire 1 A" word [0] $end
+$var wire 1 B" word [1] $end
+$var wire 1 C" comp $end
+$var wire 1 D" write $end
+$var wire 1 E" tag_in [0] $end
+$var wire 1 F" tag_in [1] $end
+$var wire 1 G" tag_in [2] $end
+$var wire 1 H" tag_in [3] $end
+$var wire 1 I" tag_in [4] $end
+$var wire 1 J" data_in [0] $end
+$var wire 1 K" data_in [1] $end
+$var wire 1 L" data_in [2] $end
+$var wire 1 M" data_in [3] $end
+$var wire 1 N" data_in [4] $end
+$var wire 1 O" data_in [5] $end
+$var wire 1 P" data_in [6] $end
+$var wire 1 Q" data_in [7] $end
+$var wire 1 R" data_in [8] $end
+$var wire 1 S" data_in [9] $end
+$var wire 1 T" data_in [10] $end
+$var wire 1 U" data_in [11] $end
+$var wire 1 V" data_in [12] $end
+$var wire 1 W" data_in [13] $end
+$var wire 1 X" data_in [14] $end
+$var wire 1 Y" data_in [15] $end
+$var wire 1 Z" valid_in $end
+$var reg 1 [" hit $end
+$var reg 1 \" dirty_out $end
+$var reg 5 ]" tag_out [0:4] $end
+$var reg 16 ^" data_out [0:15] $end
+$var reg 1 _" valid_out $end
+$var reg 1 `" ack $end
+$var reg 5 a" tag [0:4] $end
+$var reg 1 b" valid $end
+$var reg 1 c" dirty $end
+$var wire 1 d" word_out $end
+$var wire 1 e" word_ack $end
+$scope begin genblk1[3] $end
+$var parameter 32 f" i $end
+$scope module blk_ins $end
+$var wire 1 g" enable $end
+$var wire 1 h" write $end
+$var wire 1 i" rst $end
+$var wire 1 j" data_in [0] $end
+$var wire 1 k" data_in [1] $end
+$var wire 1 l" data_in [2] $end
+$var wire 1 m" data_in [3] $end
+$var wire 1 n" data_in [4] $end
+$var wire 1 o" data_in [5] $end
+$var wire 1 p" data_in [6] $end
+$var wire 1 q" data_in [7] $end
+$var wire 1 r" data_in [8] $end
+$var wire 1 s" data_in [9] $end
+$var wire 1 t" data_in [10] $end
+$var wire 1 u" data_in [11] $end
+$var wire 1 v" data_in [12] $end
+$var wire 1 w" data_in [13] $end
+$var wire 1 x" data_in [14] $end
+$var wire 1 y" data_in [15] $end
+$var reg 16 z" data_out [0:15] $end
+$var reg 1 {" ack $end
+$var reg 16 |" data [0:15] $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[2] $end
+$var parameter 32 }" i $end
+$scope module blk_ins $end
+$var wire 1 ~" enable $end
+$var wire 1 !# write $end
+$var wire 1 "# rst $end
+$var wire 1 ## data_in [0] $end
+$var wire 1 $# data_in [1] $end
+$var wire 1 %# data_in [2] $end
+$var wire 1 &# data_in [3] $end
+$var wire 1 '# data_in [4] $end
+$var wire 1 (# data_in [5] $end
+$var wire 1 )# data_in [6] $end
+$var wire 1 *# data_in [7] $end
+$var wire 1 +# data_in [8] $end
+$var wire 1 ,# data_in [9] $end
+$var wire 1 -# data_in [10] $end
+$var wire 1 .# data_in [11] $end
+$var wire 1 /# data_in [12] $end
+$var wire 1 0# data_in [13] $end
+$var wire 1 1# data_in [14] $end
+$var wire 1 2# data_in [15] $end
+$var reg 16 3# data_out [0:15] $end
+$var reg 1 4# ack $end
+$var reg 16 5# data [0:15] $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[1] $end
+$var parameter 32 6# i $end
+$scope module blk_ins $end
+$var wire 1 7# enable $end
+$var wire 1 8# write $end
+$var wire 1 9# rst $end
+$var wire 1 :# data_in [0] $end
+$var wire 1 ;# data_in [1] $end
+$var wire 1 <# data_in [2] $end
+$var wire 1 =# data_in [3] $end
+$var wire 1 ># data_in [4] $end
+$var wire 1 ?# data_in [5] $end
+$var wire 1 @# data_in [6] $end
+$var wire 1 A# data_in [7] $end
+$var wire 1 B# data_in [8] $end
+$var wire 1 C# data_in [9] $end
+$var wire 1 D# data_in [10] $end
+$var wire 1 E# data_in [11] $end
+$var wire 1 F# data_in [12] $end
+$var wire 1 G# data_in [13] $end
+$var wire 1 H# data_in [14] $end
+$var wire 1 I# data_in [15] $end
+$var reg 16 J# data_out [0:15] $end
+$var reg 1 K# ack $end
+$var reg 16 L# data [0:15] $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[0] $end
+$var parameter 32 M# i $end
+$scope module blk_ins $end
+$var wire 1 N# enable $end
+$var wire 1 O# write $end
+$var wire 1 P# rst $end
+$var wire 1 Q# data_in [0] $end
+$var wire 1 R# data_in [1] $end
+$var wire 1 S# data_in [2] $end
+$var wire 1 T# data_in [3] $end
+$var wire 1 U# data_in [4] $end
+$var wire 1 V# data_in [5] $end
+$var wire 1 W# data_in [6] $end
+$var wire 1 X# data_in [7] $end
+$var wire 1 Y# data_in [8] $end
+$var wire 1 Z# data_in [9] $end
+$var wire 1 [# data_in [10] $end
+$var wire 1 \# data_in [11] $end
+$var wire 1 ]# data_in [12] $end
+$var wire 1 ^# data_in [13] $end
+$var wire 1 _# data_in [14] $end
+$var wire 1 `# data_in [15] $end
+$var reg 16 a# data_out [0:15] $end
+$var reg 1 b# ack $end
+$var reg 16 c# data [0:15] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module rnd $end
+$var parameter 32 d# BITS $end
+$var wire 1 e# enable $end
+$var wire 1 f# rst $end
+$var reg 5 g# data [4:0] $end
+$var reg 5 h# data_next [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b111100001111 !
+b11101 "
+0#
+x$
+b11 %
+x&
+1'
+0(
+0_
+x`
+bx a
+bx b
+xc
+0d
+bx e
+xf
+x["
+x\"
+bx ]"
+bx ^"
+x_"
+x`"
+bx a"
+0b"
+0c"
+bx a#
+xb#
+bx c#
+bx J#
+xK#
+bx L#
+bx 3#
+x4#
+bx 5#
+bx z"
+x{"
+bx |"
+x4!
+x5!
+bx 6!
+bx 7!
+x8!
+x9!
+bx :!
+0;!
+0<!
+bx :"
+x;"
+bx <"
+bx #"
+x$"
+bx %"
+bx j!
+xk!
+bx l!
+bx S!
+xT!
+bx U!
+xm
+0n
+b11111 g#
+bx h#
+b10 B
+b101 d#
+b0 ="
+b100 >"
+b1 t
+b100 u
+b0 M#
+b1 6#
+b10 }"
+b11 f"
+b0 &"
+b1 m!
+b10 V!
+b11 ?!
+x8
+x7
+x6
+x5
+x4
+x3
+x2
+x1
+x0
+x/
+x.
+x-
+x,
+x+
+x*
+x)
+x=
+x<
+x;
+x:
+x9
+0
