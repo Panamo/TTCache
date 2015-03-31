@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Tue 31 Mar 2015 08:50:41 AM IRDT
+ * [] Last Modified : Tue, Mar 31, 2015  9:32:06 AM
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -17,6 +17,7 @@ module cache (enable, index, word, comp,
 	data_out, valid, ack);
 
 	parameter N = 15;
+	reg [0:3] counter;
 
 	input enable;
 	input [0:3] index;
@@ -64,11 +65,13 @@ module cache (enable, index, word, comp,
 		ack = 1'b0;
 		if (enable) begin
 			if (rst) begin
-				for (i = 0; i < N; i++) begin
-					set_en[i] = 1'b1;
-					wait (set_ack[i]) begin
+				for (counter = 0; counter < N; counter = counter + 1) begin
+					set_en[counter] = 1'b1;
+					set_rst[counter] = 1'b1;
+					wait (set_ack[counter]) begin
+						set_en[counter] = 1'b0;
+						set_rst[counter] = 1'b0;
 					end
-					set_en[i] = 1'b0;
 				end
 				ack = 1'b1;
 			end else begin

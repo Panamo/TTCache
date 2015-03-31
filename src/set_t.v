@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Tue 31 Mar 2015 08:49:51 AM IRDT
+ * [] Last Modified : Tue, Mar 31, 2015  9:13:43 AM
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -35,6 +35,7 @@ module set_t;
 		enable = 0;
 		rst = 0;
 		word = 2'b11;
+		valid_in = 1'b1;
 		data_in = 16'b0000_1111_0000_1111;
 		tag = 5'b11101;
 		#5
