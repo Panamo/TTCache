@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Tue, Mar 31, 2015  6:09:01 PM
+ * [] Last Modified : Tue, Mar 31, 2015 11:00:04 PM
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -39,11 +39,11 @@ module set (enable, word, comp,
 	reg valid = 1'b0;
 	reg dirty = 1'b0;
 
-	reg [0:15] word_in [0:N];
-	reg word_en [0:N];
-	reg word_wr [0:N];
-	wire [0:15] word_out [0:N];
-	wire word_ack [0:N];
+	reg [0:15] word_in [0:N - 1];
+	reg word_en [0:N - 1];
+	reg word_wr [0:N - 1];
+	wire [0:15] word_out [0:N - 1];
+	wire word_ack [0:N - 1];
 
 	generate
 	genvar i;
@@ -67,6 +67,7 @@ module set (enable, word, comp,
 					hit = 1'b1;
 					valid_out = valid;
 					dirty_out = dirty;
+					tag_out = tag;
 					word_en[word] = 1'b1;
 
 					/* waiting for block ack */
@@ -116,18 +117,17 @@ module set (enable, word, comp,
 			end
 			/* Access Write */
 			if (!comp && write) begin
-				tag = tag_in;
-				valid = valid_in;
-				dirty = 1'b0;
-				word_in[word] = data_in;
-				word_wr[word] = 1'b1;
-				word_en[word] = 1'b1;
+				tag <= tag_in;
+				valid <= valid_in;
+				dirty <= 1'b0;
+				word_in[word] <= data_in;
+				word_wr[word] <= 1'b1;
+				word_en[word] <= 1'b1;
 
 				/* waiting for block ack */
 				wait (word_ack[word]) begin
+					ack = 1'b1;
 				end
-				
-				ack = 1'b1;
 			end
 		end else begin
 			word_en[word] = 1'b0;

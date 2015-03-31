@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 31-03-2015
  *
- * [] Last Modified : Tue, Mar 31, 2015  6:18:46 PM
+ * [] Last Modified : Tue, Mar 31, 2015 10:58:49 PM
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -91,6 +91,7 @@ module way (enable, word, comp,
 							valid_out = set_valid_out[counter];
 							dirty_out = set_dirty_out[counter];
 							data_out = set_out[counter];
+							tag_out = set_tag_out[counter];
 							set_en[counter] = 1'b0;
 						end else begin
 							set_en[counter] = 1'b0;
@@ -159,9 +160,10 @@ module way (enable, word, comp,
 							set_wr[counter] = 1'b1;
 							set_cmp[counter] = 1'b0;
 							set_en[counter] = 1'b1;
+							#1
 							wait (set_ack[counter]) begin
+								set_en[counter] = 1'b0;
 							end
-							set_en[counter] = 1'b0;
 						end
 					end
 
