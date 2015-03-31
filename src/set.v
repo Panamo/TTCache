@@ -5,14 +5,14 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Mon, Mar 30, 2015 12:50:59 PM
+ * [] Last Modified : Tue 31 Mar 2015 08:48:51 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
 module set (enable, word, comp,
-	write, tag_in, data_in, valid_in,
-	rst, hit, dirty_out, tag_out,
+	write, rst, tag_in, data_in, valid_in,
+	hit, dirty_out, tag_out,
 	data_out, valid_out, ack);
 	
 	/* set number of block in a set */
@@ -23,6 +23,7 @@ module set (enable, word, comp,
 	input [0:1] word;
 	input comp;
 	input write;
+	input rst;
 	input [0:4] tag_in;
 	input [0:15] data_in;
 	input valid_in;
@@ -47,14 +48,18 @@ module set (enable, word, comp,
 	generate
 	genvar i;
 	for (i = 0; i < N; i = i + 1) begin
-		block blk_ins(word_en[i], word_wr[i], word_in[i], word_out[i], word_ack[i]);
-
+		block blk_ins(word_en[i], word_wr[i], 1'b0, word_in[i], word_out[i], word_ack[i]);
 	end
 	endgenerate
 
 	always @ (enable) begin
 		ack = 1'b0;
 		if (enable) begin
+			/* Reset */
+			if (rst) begin
+				valid = 1'b0;
+				ack = 1'b1;
+			end
 			/* Compare Read */
 			if (comp && !write) begin
 				if (tag == tag_in) begin
@@ -120,9 +125,9 @@ module set (enable, word, comp,
 				tag = tag_in;
 				valid = valid_in;
 				dirty = 1'b0;
-				word_wr[word] <= 1'b1;
-				word_en[word] <= 1'b1;
-				word_in[word] <= data_in;
+				word_wr[word] = 1'b1;
+				word_en[word] = 1'b1;
+				word_in[word] = data_in;
 
 				/* waiting for block ack */
 				wait (word_ack[word]) begin
