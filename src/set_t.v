@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Mon, Mar 30, 2015 11:08:12 AM
+ * [] Last Modified : Tue 31 Mar 2015 08:49:51 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -19,6 +19,8 @@ module set_t;
 	reg write;
 	reg [0:1] word;
 	reg cmp;
+	reg valid_in;
+	reg rst;
 
 	wire [0:15] data_out;
 	wire [0:4] tag_out;
@@ -31,6 +33,7 @@ module set_t;
 		$dumpfile("set.vcd");
 		$dumpvars(0, set_t);
 		enable = 0;
+		rst = 0;
 		word = 2'b11;
 		data_in = 16'b0000_1111_0000_1111;
 		tag = 5'b11101;
@@ -44,9 +47,23 @@ module set_t;
 		enable = 1;
 		write = 0;
 		cmp = 1;
+		#5
+		enable = 0;
+		write = 0;
+		cmp = 0;
+		#5
+		enable = 1;
+		rst = 1;
+		#5
+		enable = 0;
+		#5
+		enable = 1;
+		write = 0;
+		cmp = 1;
 		#10
 		$stop;
 	end
 
-	set st(enable, word, cmp, write, tag, data_in, 1'b0, 1'b0, hit, dirty, tag_out, data_out, valid, ack);
+	set st(enable, word, cmp, write, rst, tag, data_in,
+		valid_in, hit, dirty, tag_out, data_out, valid, ack);
 endmodule

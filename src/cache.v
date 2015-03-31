@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Mon 30 Mar 2015 06:37:15 PM IRDT
+ * [] Last Modified : Tue 31 Mar 2015 08:50:41 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -36,13 +36,13 @@ module cache (enable, index, word, comp,
 	output reg ack;
 		
 	reg set_en [0:N];
-	reg set_rst [0:N];
 	reg [0:1] set_word [0:N];
 	reg set_cmp [0:N];
 	reg set_wr [0:N];
 	reg [0:4] set_tag_in [0:N];
 	reg [0:15] set_in [0:N];
 	reg set_valid_in [0:N];
+	reg set_rst [0:N];
 
 	wire set_hit [0:N];
 	wire set_dirty_out [0:N];
@@ -54,8 +54,8 @@ module cache (enable, index, word, comp,
 	generate
 	genvar i;
 	for (i = 0; i < N; i = i + 1) begin
-		set set_ins(set_en[i], set_word[i], set_cmp[i], set_wr[i], set_tag_in[i],
-			set_in[i], set_valid_in[i], set_rst[i], set_hit[i], set_dirty_out[i],
+		set set_ins(set_en[i], set_word[i], set_cmp[i], set_wr[i], set_rst[i],
+			set_tag_in[i], set_in[i], set_valid_in[i], set_hit[i], set_dirty_out[i],
 			set_tag_out[i], set_out[i], set_valid_out[i], set_ack[i]);
 	end
 	endgenerate
@@ -63,24 +63,33 @@ module cache (enable, index, word, comp,
 	always @ (enable) begin
 		ack = 1'b0;
 		if (enable) begin
-			set_rst[index] = rst;
-			set_word[index] = word;
-			set_cmp[index] = comp;
-			set_wr[index] = write;
-			set_tag_in[index] = tag_in;
-			set_in[index] = data_in;
-			set_valid_in[index] = valid_in;
-			set_en[index] = 1'b1;
+			if (rst) begin
+				for (i = 0; i < N; i++) begin
+					set_en[i] = 1'b1;
+					wait (set_ack[i]) begin
+					end
+					set_en[i] = 1'b0;
+				end
+				ack = 1'b1;
+			end else begin
+				set_word[index] = word;
+				set_cmp[index] = comp;
+				set_wr[index] = write;
+				set_tag_in[index] = tag_in;
+				set_in[index] = data_in;
+				set_valid_in[index] = valid_in;
+				set_en[index] = 1'b1;
 			
-			wait (set_ack[index]) begin
-				hit = set_hit[index];
-				dirty = set_dirty_out[index];
-				tag_out = set_tag_out[index];
-				valid = set_valid_out[index];
-				data_out = set_out[index];
+				wait (set_ack[index]) begin
+					hit = set_hit[index];
+					dirty = set_dirty_out[index];
+					tag_out = set_tag_out[index];
+					valid = set_valid_out[index];
+					data_out = set_out[index];
+				end
+
+				ack = 1'b1;
 			end
-			
-			ack = 1'b1;
 		end else begin
 			set_en[index] = 1'b0;
 		end
