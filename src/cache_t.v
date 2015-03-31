@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Thu 05 Mar 2015 02:07:19 AM IRST
+ * [] Last Modified : Tue, Mar 31, 2015  9:35:56 AM
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -20,6 +20,8 @@ module cache_t;
 	reg [0:1] word;
 	reg cmp;
 	reg [0:3] index;
+	reg valid_in;
+	reg rst;
 
 	wire [0:15] data_out;
 	wire [0:4] tag_out;
@@ -32,7 +34,9 @@ module cache_t;
 		$dumpfile("cache.vcd");
 		$dumpvars(0, cache_t);
 		enable = 0;
+		rst = 0;
 		word = 2'b11;
+		valid_in = 1'b1;
 		data_in = 16'b0000_1111_0000_1111;
 		tag = 5'b11101;
 		index = 4'b0000;
@@ -46,9 +50,26 @@ module cache_t;
 		enable = 1;
 		write = 0;
 		cmp = 1;
+		#5
+		enable = 0;
+		write = 0;
+		cmp = 0;
+		#5
+		enable = 1;
+		rst = 1;
+		wait (ack) begin
+		end
+		#5
+		rst = 0;
+		enable = 0;
+		#5
+		enable = 1;
+		write = 0;
+		cmp = 1;
 		#10
 		$stop;
 	end
 
-	cache ch(enable, index, word, cmp, write, tag, data_in, 1'b0, 1'b0, hit, dirty, tag_out, data_out, valid, ack);
+	cache ch(enable, index, word, cmp, write, tag, data_in,
+		valid_in, rst, hit, dirty, tag_out, data_out, valid, ack);
 endmodule
