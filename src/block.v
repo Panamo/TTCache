@@ -10,7 +10,7 @@
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
-module block(enable, write, ret, data_in, data_out, ack);
+module block(enable, write, rst, data_in, data_out, ack);
 	
 	input enable;
 	input write;
@@ -22,13 +22,13 @@ module block(enable, write, ret, data_in, data_out, ack);
 
 	reg [0:15] data;
 
-	always @ (enable) begin
+	always @ (enable, write) begin
 		ack = 1'b0;
 		if (enable) begin
 			if (write)
 				data = data_in;
 			if (rst)
-				data = 4'h0000;
+				data = 16'h0000;
 			data_out = data;
 			ack = 1'b1;
 		end

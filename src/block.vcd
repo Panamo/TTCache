@@ -1,57 +1,169 @@
 $date
-	Mon Mar 30 02:32:45 2015
+	Tue Mar 31 08:24:33 2015
 $end
 $version
-	Icarus Verilog
+	ModelSim Version 10.1c
 $end
 $timescale
 	100ps
 $end
 $scope module block_t $end
-$var wire 1 ! ack $end
-$var wire 16 " data_out [0:15] $end
-$var reg 16 # data_in [0:15] $end
-$var reg 1 $ enable $end
-$var reg 1 % write $end
+$var reg 16 ! data_in [0:15] $end
+$var reg 1 " enable $end
+$var reg 1 # write $end
+$var reg 1 $ rst $end
+$var wire 1 % data_out [0] $end
+$var wire 1 & data_out [1] $end
+$var wire 1 ' data_out [2] $end
+$var wire 1 ( data_out [3] $end
+$var wire 1 ) data_out [4] $end
+$var wire 1 * data_out [5] $end
+$var wire 1 + data_out [6] $end
+$var wire 1 , data_out [7] $end
+$var wire 1 - data_out [8] $end
+$var wire 1 . data_out [9] $end
+$var wire 1 / data_out [10] $end
+$var wire 1 0 data_out [11] $end
+$var wire 1 1 data_out [12] $end
+$var wire 1 2 data_out [13] $end
+$var wire 1 3 data_out [14] $end
+$var wire 1 4 data_out [15] $end
+$var wire 1 5 ack $end
 $scope module blk $end
-$var wire 16 & data_in [0:15] $end
-$var wire 1 ' enable $end
-$var wire 1 ( write $end
-$var reg 1 ) ack $end
-$var reg 16 * data [0:15] $end
-$var reg 16 + data_out [0:15] $end
+$var wire 1 6 enable $end
+$var wire 1 7 write $end
+$var wire 1 8 rst $end
+$var wire 1 9 data_in [0] $end
+$var wire 1 : data_in [1] $end
+$var wire 1 ; data_in [2] $end
+$var wire 1 < data_in [3] $end
+$var wire 1 = data_in [4] $end
+$var wire 1 > data_in [5] $end
+$var wire 1 ? data_in [6] $end
+$var wire 1 @ data_in [7] $end
+$var wire 1 A data_in [8] $end
+$var wire 1 B data_in [9] $end
+$var wire 1 C data_in [10] $end
+$var wire 1 D data_in [11] $end
+$var wire 1 E data_in [12] $end
+$var wire 1 F data_in [13] $end
+$var wire 1 G data_in [14] $end
+$var wire 1 H data_in [15] $end
+$var reg 16 I data_out [0:15] $end
+$var reg 1 J ack $end
+$var reg 16 K data [0:15] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-bx +
-bx *
-0)
-0(
-0'
-bx &
-0%
+bx !
+0"
+0#
 0$
-bx #
-bx "
-0!
+bx I
+0J
+bx K
+x4
+x3
+x2
+x1
+x0
+x/
+x.
+x-
+x,
+x+
+x*
+x)
+x(
+x'
+x&
+x%
+05
+xH
+xG
+xF
+xE
+xD
+xC
+xB
+xA
+x@
+x?
+x>
+x=
+x<
+x;
+x:
+x9
+08
+07
+06
 $end
 #50
+1"
+1#
+b111100001111 !
+1H
+1G
+1F
+1E
+0D
+0C
+0B
+0A
+1@
+1?
+1>
+1=
+0<
+0;
+0:
+09
+16
+17
+b111100001111 K
+b111100001111 I
+1J
+14
+13
+12
+11
+00
+0/
+0.
+0-
+1,
+1+
+1*
 1)
-1!
-b111100001111 +
-b111100001111 "
-b111100001111 *
-1%
-1(
-b111100001111 #
-b111100001111 &
-1$
-1'
-#60
-1)
-1!
-0%
 0(
-#160
+0'
+0&
+0%
+15
+#60
+0"
+0#
+06
+07
+0J
+05
+#80
+1"
+1$
+18
+16
+b0 K
+b0 I
+1J
+04
+03
+02
+01
+0,
+0+
+0*
+0)
+15
