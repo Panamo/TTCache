@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 31-03-2015
  *
- * [] Last Modified : Tue, Mar 31, 2015 11:55:05 AM
+ * [] Last Modified : Tue 31 Mar 2015 12:02:42 PM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -17,18 +17,18 @@
  * 14497877/how-to-implement-a-pseudo-hardware-random-number-generator
 */
 module fibonacci_lfsr (enable, rst, data);
+   	parameter BITS = 5;
+
 	input enable;
     	input rst;
-	output reg [4:0] data;
+	output reg [BITS - 1:0] data;
 
-   	parameter BITS = 5;
-	
-	reg [4:0] data_next;
+	reg [BITS - 1:0] data_next;
 
 	always @* begin
       		data_next = data;
       		repeat(BITS) begin
-         		data_next = {(data_next[4]^data_next[1]), data_next[4:1]};
+         		data_next = {(data_next[BITS - 1]^data_next[1]), data_next[BITS - 1:1]};
       		end
    	end
 
