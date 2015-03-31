@@ -41,3 +41,6 @@ data_out <-|   c   |
 data_out [15:0] <-|                   |
           valid <-|                   |
                   +-------------------+
+
+for generating random number inoder to use them in k-way associative cache module
+we use Linear Feedback Shift Register (LFSR).
