@@ -16,6 +16,7 @@ module block_t;
 	reg [0:15] data_in;
 	reg enable;
 	reg write;
+	reg rst;
 
 	wire [0:15] data_out;
 	wire ack;
@@ -25,14 +26,19 @@ module block_t;
 		$dumpvars(0, block_t);
 		enable = 0;
 		write = 0;
-		#5 enable = 1;
-		data_in = 16'b0000_1111_0000_1111;
+		rst = 0;
+		#5
+		enable = 1;
 		write = 1;
+		data_in = 16'b0000_1111_0000_1111;
 		#1
+		enable = 0;
 		write = 0;
 		#2
+		enable = 1;
 		rst = 1;
-		#10 $stop;
+		#10
+		$stop;
 	end
-	block blk(enable, write, data_in, data_out, ack);
+	block blk(enable, write, rst, data_in, data_out, ack);
 endmodule
