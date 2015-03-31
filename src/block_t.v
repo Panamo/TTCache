@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Mon 30 Mar 2015 02:32:40 AM IRDT
+ * [] Last Modified : Tue 31 Mar 2015 08:04:53 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -28,7 +28,10 @@ module block_t;
 		#5 enable = 1;
 		data_in = 16'b0000_1111_0000_1111;
 		write = 1;
-		#1 write = 0;
+		#1
+		write = 0;
+		#2
+		rst = 1;
 		#10 $stop;
 	end
 	block blk(enable, write, data_in, data_out, ack);
