@@ -5,12 +5,11 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Tue, Mar 31, 2015  9:32:06 AM
+ * [] Last Modified : Wed 01 Apr 2015 09:12:09 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
-`timescale 1 ns/100 ps
 module cache (enable, index, word, comp,
 	write, tag_in, data_in, valid_in,
 	rst, hit, dirty, tag_out,
