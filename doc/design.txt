@@ -7,7 +7,7 @@ Parham Alvani <parham.alvani@gmail.com>
 * cache_ctl : cache controller, it's get signal and clk and manage it, it send signal into cache module.
 * cache : cache memory, it contains some sets and send given signal into them.
 * set: set, it contains tag, valid, dirty flags and contins some block of cache.
-
+* block: it contains some register in order to store data.
 
 
 +---------+     +-----+     +---+     +-----+
@@ -42,5 +42,9 @@ data_out [15:0] <-|                   |
           valid <-|                   |
                   +-------------------+
 
+all memories are asynchronous and use ack signal but cache_ctl is synchronous module.
+
 for generating random number inoder to use them in k-way associative cache module
 we use Linear Feedback Shift Register (LFSR).
+
+k-way cache implements in cachek.v and use way module as abstraction for sets.
