@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Mon 30 Mar 2015 06:45:13 PM IRDT
+ * [] Last Modified : Thu 02 Apr 2015 10:02:12 AM IRDT
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -20,6 +20,8 @@ module cache_ctl_t;
 	reg write;
 	reg [0:1] word;
 	reg cmp;
+	reg rst;
+	reg valid_in;
 	reg [0:3] index;
 
 	wire [0:15] data_out;
@@ -34,6 +36,7 @@ module cache_ctl_t;
 		enable = 0;
 		word = 2'b11;
 		data_in = 16'b0000_1111_0000_1111;
+		valid_in = 1'b1;
 		tag = 5'b11101;
 		index = 4'b0000;
 		#5
@@ -46,7 +49,16 @@ module cache_ctl_t;
 		enable = 1;
 		write = 0;
 		cmp = 1;
-		#10
+		#5
+		enable = 0;
+		write = 0;
+		cmp = 0;
+		rst = 1;
+		#1
+		enable = 1;
+		#2
+		enable = 0;
+		rst = 0;
 		$stop;
 	end
 	
@@ -58,5 +70,5 @@ module cache_ctl_t;
 		end
 	end
 
-	cache_ctl chc(clk, enable, index, word, cmp, write, tag, data_in, 1'b0, 1'b0, hit, dirty, tag_out, data_out, valid);
+	cache_ctl chc(clk, enable, index, word, cmp, write, tag, data_in, valid_in, rst, hit, dirty, tag_out, data_out, valid);
 endmodule
