@@ -5,12 +5,12 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Wed 01 Apr 2015 09:16:16 AM IRDT
+ * [] Last Modified : Wed, Apr  1, 2015  9:22:47 AM
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
 */
-module cache (enable, index, word, comp,
+module cachek (enable, index, word, comp,
 	write, tag_in, data_in, valid_in,
 	rst, hit, dirty, tag_out,
 	data_out, valid, ack);
@@ -67,7 +67,7 @@ module cache (enable, index, word, comp,
 				for (counter = 0; counter < N; counter = counter + 1) begin
 					way_en[counter] = 1'b1;
 					way_rst[counter] = 1'b1;
-					wait (set_ack[counter]) begin
+					wait (way_ack[counter]) begin
 						way_en[counter] = 1'b0;
 						way_rst[counter] = 1'b0;
 					end
@@ -82,7 +82,7 @@ module cache (enable, index, word, comp,
 				way_valid_in[index] = valid_in;
 				way_en[index] = 1'b1;
 			
-				wait (set_ack[index]) begin
+				wait (way_ack[index]) begin
 					hit = way_hit[index];
 					dirty = way_dirty_out[index];
 					tag_out = way_tag_out[index];
