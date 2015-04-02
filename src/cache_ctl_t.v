@@ -5,7 +5,7 @@
  *
  * [] Creation Date : 04-03-2015
  *
- * [] Last Modified : Thu 02 Apr 2015 10:02:12 AM IRDT
+ * [] Last Modified : Thu, Apr  2, 2015 10:12:18 AM
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -54,11 +54,17 @@ module cache_ctl_t;
 		write = 0;
 		cmp = 0;
 		rst = 1;
-		#1
+		#5
 		enable = 1;
-		#2
+		#5
 		enable = 0;
 		rst = 0;
+		write = 0;
+		cmp = 0;
+		#5
+		enable = 1;
+		#5
+		enable = 0;
 		$stop;
 	end
 	
